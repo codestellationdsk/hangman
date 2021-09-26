@@ -1,0 +1,142 @@
+import random
+print("Welcome to Hangman!!!")
+name=input("What is your name?")
+
+hangman = ["""
+
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========""", """
+
+  +---+
+  |   |
+  O   |
+      |
+      |
+=========""", """
+
+  
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+=========""", """
+  +---+
+  |   |
+  O   |
+  |   |
+  |   |
+=========""", """
+  +---+
+  |   |
+  O   |
+  |/  |
+  |   |
+=========""", """
+
+  +---+
+  |   |
+  O   |
+ \|/  |
+  |   |
+=========""", """
+  +---+
+  |   |
+  O   |
+ \|/  |
+  |   |
+ / 
+=========""", """
+
+  +---+
+  |   |
+  O   |
+ \|/  |
+  |   |
+ / \
+========="""]
+
+def getRandomWord():
+    words = [ "elephant","rabbit","lion","tiger","zebra","giraffe","panther","donkey","monkey","deer","gorilla","chimpanzee"]
+    word = random.choice(words)
+    return word
+def displayBoard(hangman, wrongGuess, rightguess, correctWord):
+    print(hangman[len(wrongGuess)])
+    print()
+    
+    print('Wrong Guesses:', end=' ')
+    for letter in wrongGuess:
+        print(letter, end=' ')
+    print("\n")
+
+    blanks = '_' * len(correctWord)
+    
+    for i in range(len(correctWord)): 
+        if correctWord[i] in rightguesses:
+            blanks = blanks[:i] +correctWord[i] + blanks[i+1:]
+    
+    for letter in blanks: 
+        print(letter, end=' ')
+    print("\n")
+
+
+def getGuess(alreadyGuessed):
+    while True:
+        guess = input('Guess a letter: ')
+        guess = guess.lower()
+        if guess in alreadyGuessed:
+            print('You have already guessed that letter. Choose again.')
+        elif guess not in 'abcdefghijklmnopqrstuvwxyz':
+            print('Please enter a LETTER.')
+        else:
+            return guess
+
+
+def playAgain():
+    return input("\nDo you want to play again? ").lower().startswith('y')
+
+
+wrongGuess = ''
+rightguesses = ''
+correctWord = getRandomWord()
+gameIsDone = False
+
+while True:
+    displayBoard(hangman, wrongGuess, rightguesses, correctWord)
+
+    guess = getGuess(wrongGuess + rightguesses)
+
+    if guess in correctWord:
+        rightguesses = rightguesses + guess
+
+        foundAllLetters = True
+        for i in range(len(correctWord)):
+            if correctWord[i] not in rightguesses:
+                foundAllLetters = False
+                break
+        if foundAllLetters:
+            print('\nYes! The correct word is "' +
+                  correctWord + '"! You have won!')
+            gameIsDone = True
+    else:
+        wrongGuess = wrongGuess + guess
+
+        if len(wrongGuess) == len(hangman) - 1:
+            displayBoard(hang, wrongGuess,
+                         rightguesses, correctWord)
+            print("You have run out of guesses! the word was " + correctWord )
+            gameIsDone = True
+
+    if gameIsDone:
+        if playAgain():
+            wrongGuess = ''
+            correctLetters = ''
+            gameIsDone = False
+            correctWord = getRandomWord()
+        else:
+            break
