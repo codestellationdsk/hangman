@@ -1,7 +1,7 @@
 import random
 def hangman():
 
-     words_list = ["elephant","rabbit","lion","tiger","zebra","giraffe","panther","donkey","monkey","deer","gorilla","chimpanzee"]
+     words_list = ["elephant","rabbit","lion","tiger","zebra","giraffe","panther","donkey","monkey","deer","gorilla","chimpanzee","gorilla","kangaroo","bear","camel","horse","cheetah"]
      word = random.choice(words_list)
      turns=10
      guessed= ''
@@ -102,4 +102,5 @@ def hangman():
 name= input("Enter your name: ")
 print("Welcome",name,"!!")
 print("Good luck, try to find the correct word")
+print("Hint: It is an animal")
 hangman()
