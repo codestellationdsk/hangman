@@ -8,26 +8,28 @@ def hangman():
      valid_entry = set('abcdefghijklmnopqrstuvwxyz')
 
      while len(word)>0:
-         correctWord=""
-    
+         correctWord=""   
+         
          for letter in word: 
               if letter in guessed:
                  correctWord = correctWord + letter
               else:
-                 correctWord = correctWord + "_"
-              if correctWord == word:
-                 print(correctWord)
-                 print("Congratulations!!! ***You Won!***")
-                 break            
+                 correctWord = correctWord + "_ "
+               
+         if correctWord == word:
+            print(correctWord)
+            print("Congratulations!!! ***You Won!***")  
+            print("The word is" , word)        
+            break
+
+         print ("Guess the word",correctWord)
+         guess = input()  
     
-         print ("The word is",correctWord)
-         guess = input()
-  
          if guess in valid_entry:
              guessed = guessed + guess
          else:
-              print("Enter a valid character")
-              guess = input()
+             print("Enter a valid character")
+             guess = input()
          if guess not in word:
              turns = turns-1
     
@@ -93,7 +95,10 @@ def hangman():
                 print("     /|\ ")
                 print("      |  ")
                 print("     / \ ")
+                print("The correct word was",word)
                 break
+         
+              
 name= input("Enter your name: ")
 print("Welcome",name,"!!")
 print("Good luck, try to find the correct word")
