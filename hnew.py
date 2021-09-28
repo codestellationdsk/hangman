@@ -1,7 +1,7 @@
 import random
 def hangman():
 
-     words_list = ["elephant","rabbit","lion","tiger","zebra","giraffe","panther","donkey","monkey","deer","gorilla","chimpanzee","gorilla","kangaroo","bear","camel","horse","cheetah"]
+     words_list = ["elephant","rabbit","lion","tiger","zebra","giraffe","panther","donkey","monkey","deer","gorilla","chimpanzee","kangaroo","bear","camel","horse","cheetah"]
      word = random.choice(words_list)
      turns=10
      guessed= ''
