@@ -89,12 +89,13 @@ def hangman():
                 print("      |  ")
                 print("     / \ ")
              if turns == 0 :
-                print("You loose")
+                print("The man is hanged")
                 print("---------")
                 print("      O_|")
                 print("     /|\ ")
                 print("      |  ")
                 print("     / \ ")
+                print("You lost  ---*Game Over*----")
                 print("The correct word was",word)
                 break
          
